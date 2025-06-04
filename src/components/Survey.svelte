@@ -14,7 +14,6 @@
   let color_confidence = "";  // Scale values as a string (e.g., "5")
   let color_response = "";       
   let submitted = false;
-
   let redSquareShownTime = 0;
 
   const dispatch = createEventDispatcher();
@@ -139,6 +138,7 @@
 
 
 <div class="content-wrapper">
+
   <div class="survey-container">
     {#if demoMode === true}
     <p class="progress-text">Øve-oppgave</p>
@@ -256,6 +256,7 @@
 
 
 <style>
+
   .survey-container {
     min-width: 440px;
     max-width: 480px;
@@ -344,7 +345,11 @@
     font-size: 16px;
     margin-bottom: 8px;
     margin-top: 8px;
+    
   }
+ 
+
+
   .radio-group {
     display: flex;
     justify-content: center;

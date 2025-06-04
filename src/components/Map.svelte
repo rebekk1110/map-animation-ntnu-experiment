@@ -122,30 +122,29 @@
         onEachFeature: function (feature, layer) {
           const isMain = feature.properties.mainFeature;
           const isChanging = feature.properties.changing;
-          const color = getColor(feature.properties.color_id);
+          const startColor = getColor(feature.properties.color_id);
+          const endColor = getColor(feature.properties.new_color_id);
 
           // Store reference if it's the main feature
           if (isMain) {
-            mainFeatureLayer = layer;
-            originalColor = color;
+          mainFeatureLayer = layer;
+          originalColor = startColor;
 
-            // Only make it change if the condition is "Change"
-            if (changeCondition === "Change") {
-              changingLayers.push({
-                layer,
-                startColor: color,
-                endColor: getRandomGrayColor(color)
-              });
-            }
-          } else if (isChanging) {
-            // For non-main features, use the 'changing' property as usual
+          if (changeCondition === "Change") {
             changingLayers.push({
               layer,
-              startColor: color,
-              endColor: getRandomGrayColor(color)
+              startColor,
+              endColor
             });
           }
+        } else if (isChanging) {
+          changingLayers.push({
+            layer,
+            startColor,
+            endColor
+          });
         }
+      }
       }).addTo(map);
 
 
